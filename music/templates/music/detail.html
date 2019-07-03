@@ -1,0 +1,51 @@
+{% extends 'music/base.html' %}
+
+{% block body %}
+
+    <img style="max-width:95%;border:6px double #545565;" src="{{ album.album_logo.url }}" border="10" border-color="white">
+    <h1 style="color:white;"><strong>{{ album.album_title }}</strong></h1>
+    <h3 style="color:white;">{{ album.artist }} </h3>
+
+        {% csrf_token %}       
+
+
+<!-- Right Song Info -->
+        <div class="col-sm-8 col-md-9">
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                <li role="presentation" class="active"><a href="{% url 'music:detail' album.id %}">View All</a></li>
+                <li role="presentation"><a href="#">Add New Song</a></li>
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>All Songs</h3>
+
+                    <!-- For Error Message -->
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Audio File</th>
+                            <th>Actions</th>
+                        </tr>
+                            {% for song in album.song_set.all %}
+                        <tr>
+                            <th>
+                                {{ song.song_title }}
+                        <br>
+                        </th>
+                            
+                        </tr>
+                            {% endfor %}
+                        </thead>
+                    </table>
+
+
+
+{% endblock %}
+

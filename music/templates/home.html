@@ -1,0 +1,32 @@
+<!-- templates/home.html-->
+<head>
+  <Title>Login page</Title>
+         
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+         
+    </head> 
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">logout</a></p>
+{% else %}
+  <div class="alert alert-success">
+  <strong>Success! You logged out.</strong>
+</div>
+
+<div class="alert alert-success">
+Click here to <button type="button" class="btn btn-primary active"> <a href="{% url 'login' %}">Login</a></button>
+ </div>   
+
+{% endif %}
+{% endblock %}
